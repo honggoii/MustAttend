@@ -26,7 +26,7 @@
         android:layout_margin="20dp"
         android:layout_marginTop="96dp"
         android:background="@color/BASIC"
-        android:text="리뷰 관리"
+        android:text="예약 수락 및 거절"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

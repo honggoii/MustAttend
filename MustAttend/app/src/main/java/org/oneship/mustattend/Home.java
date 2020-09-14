@@ -24,7 +24,7 @@ public class Home extends Fragment {
         user_email = this.getArguments().getString("user_email");
         System.out.println("**********Home : "+user_email+"***********");
         // 지도 보여주기
-        ImageButton imgbutton = viewGroup.findViewById(R.id.imageButton);
+        Button imgbutton = viewGroup.findViewById(R.id.positionButton);
         imgbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +34,7 @@ public class Home extends Fragment {
         });
 
         // 내 주소 텍스트로
-        ImageButton markerbutton = viewGroup.findViewById(R.id.positionButton);
+        Button markerbutton = viewGroup.findViewById(R.id.imageButton);
         markerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +49,16 @@ public class Home extends Fragment {
             public void onClick(View v) {
                 mainUI activity = (mainUI) getActivity();
                 activity.onStoreList();
+            }
+        });
+
+        //메인 화면의 추천 버튼
+        Button recommend = viewGroup.findViewById(R.id.reco_btn);
+        recommend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainUI activity = (mainUI) getActivity();
+                activity.onRecommend();
             }
         });
 

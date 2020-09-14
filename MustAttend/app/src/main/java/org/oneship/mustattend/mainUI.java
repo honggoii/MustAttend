@@ -50,28 +50,32 @@ public class mainUI extends AppCompatActivity {
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
     Home home;
-    RecommendActivity recommendActivity;
+    //RecommendActivity recommendActivity;
     CheckReservation checkReservation;
     mypage mypage;
     String user_email;  //이전 activity의 intent에서 받을 사용자의 이메일 변수
     double latitude;
     double longitude;
-
+    Integer number;//예약자/가게등록자 구분
+    Bundle args = new Bundle(); //fragment에 보낼 user_email을 위한 객체
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_action_bar);
         user_email = getIntent().getStringExtra("user_email"); //activity->activity로 값 전달 받을 때
-        Bundle args = new Bundle(); //fragment에 보낼 user_email을 위한 객체
+
+        //위도, 경도 초기화
+        longitude = 0;
+        latitude = 0;
         args.putString("user_email", user_email);
 
         home = new Home();
         home.setArguments(args);
         checkReservation = new CheckReservation();
         checkReservation.setArguments(args);
-        recommendActivity = new RecommendActivity();
-        recommendActivity.setArguments(args);
+        //recommendActivity = new RecommendActivity();
+        //recommendActivity.setArguments(args);
         mypage = new mypage();
         mypage.setArguments(args);
 
@@ -87,9 +91,9 @@ public class mainUI extends AppCompatActivity {
                     case R.id.menu_home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, home).commit();
                         return true;
-                    case R.id.menu_recommend:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, recommendActivity).commit();
-                        return true;
+//                    case R.id.menu_recommend:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.container, recommendActivity).commit();
+//                        return true;
                     case R.id.menu_list:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, checkReservation).commit();
                         return true;
@@ -121,6 +125,15 @@ public class mainUI extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onRecommend() {
+        Intent intent = new Intent(this, RealRecommendActivity.class);
+        intent.putExtra("user_email",user_email); //intent로 AllStore activity에 전달할 이메일
+        intent.putExtra("latitude",latitude); //intent로 AllStore activity에 전달할 위도
+        intent.putExtra("longitude",longitude); //intent로 AllStore activity에 전달할 경도
+        //액티비티 시작!
+        startActivity(intent);
+    }
+
     public void onMyPosition() {
 
         if (!checkLocationServicesStatus()) {
@@ -136,9 +149,13 @@ public class mainUI extends AppCompatActivity {
 
         gpsTracker = new GpsTracker(mainUI.this);
 
-        double latitude = gpsTracker.getLatitude();
-        double longitude = gpsTracker.getLongitude();
+        latitude = gpsTracker.getLatitude();
+        longitude = gpsTracker.getLongitude();
+//        args.putDouble("latitude",latitude);
+//        args.putDouble("longitude",longitude);
+//        recommendActivity.setArguments(args);
 
+        new JSONTask().execute("http://192.168.0.11:3000/savelocation");
         String address = getCurrentAddress(latitude, longitude);
         textView.setText(address);
 

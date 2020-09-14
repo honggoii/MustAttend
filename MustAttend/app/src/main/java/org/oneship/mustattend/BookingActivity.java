@@ -48,6 +48,7 @@ public class BookingActivity extends AppCompatActivity {
     int timeHour;
     int timeMin;
     int numberOfPeople;
+    int state = 1;//예약 요청 시작 1
 
 
     @Override
@@ -66,7 +67,7 @@ public class BookingActivity extends AppCompatActivity {
         //이메일 세션
         Intent intent = getIntent();
         user_email = intent.getExtras().getString("user_email");
-        store_name = getIntent().getStringExtra("store_name"); //activity->activity로 값 전달 받을 때
+        store_name = getIntent().getStringExtra("store_name").replace("\"", ""); //activity->activity로 값 전달 받을 때
         System.out.println("**********BookingActivity : "+user_email+"***********");
 
         final NumberPicker monthPicker = findViewById(R.id.month);
@@ -96,7 +97,7 @@ public class BookingActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new JSONTask().execute("http://192.168.43.175:3000/reservereq");
+                new JSONTask().execute("http://192.168.0.11:3000/reservereq");
                 purpose = res_purpose.getText().toString();
                 dateMonth = month_id.getValue();
                 dateDay = day_id.getValue();
@@ -125,6 +126,7 @@ public class BookingActivity extends AppCompatActivity {
                 jsonObject.put("timeMin", timeMin);
                 jsonObject.put("purpose", purpose);
                 jsonObject.put("numberOfPeople", numberOfPeople);
+                jsonObject.put("state",state);
 
                 String data = jsonObject.toString();
                 HttpURLConnection con = null;

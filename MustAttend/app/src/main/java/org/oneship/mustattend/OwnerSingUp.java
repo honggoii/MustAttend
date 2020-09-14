@@ -178,7 +178,7 @@ public class OwnerSingUp extends AppCompatActivity  {
         StorePhone = StorePhone_id.getText().toString();
         StorePrivateNum = StorePrivateNum_id.getText().toString();
         Capacity = Capacity_id.getValue();
-        new JSONTask().execute("http://192.168.43.175:3000/register");
+        new JSONTask().execute("http://192.168.0.11:3000/register");
 
 
     }
@@ -285,7 +285,7 @@ public class OwnerSingUp extends AppCompatActivity  {
                 //alert.show();
 
                 Toast.makeText(getApplicationContext(),"가입완료", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext() , mainUI.class);
+                Intent intent = new Intent(getApplicationContext() , LoginActivity.class);
                 intent.putExtra("user_email",email); //intent로 mainUI activity에 전달할 이메일
                 //액티비티 시작!
                 startActivity(intent);

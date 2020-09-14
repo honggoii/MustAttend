@@ -83,7 +83,7 @@ public class SignUp extends AppCompatActivity  {
     }
 
     public void SuccessRegisterCliked(View v){//가입 완료 버튼이 눌렸을 때
-        new JSONTask().execute("http://192.168.43.175:3000/post");
+        new JSONTask().execute("http://192.168.0.11:3000/post");
         email = email_id.getText().toString();
         //Toast.makeText(getApplicationContext(),email, Toast.LENGTH_LONG).show();
         pw = pw_id.getText().toString();

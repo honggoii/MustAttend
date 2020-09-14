@@ -32,7 +32,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/temppurpose"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -62,7 +62,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/tempdate"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -90,7 +90,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/temptime"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -118,7 +118,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/tempnum"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -157,7 +157,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_position"
+                android:id="@+id/reject"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

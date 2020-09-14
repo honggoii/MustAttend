@@ -1,97 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    tools:context=".Home"
-    android:background="@color/cardColor"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardColor"
+    android:orientation="vertical"
+    tools:context=".Home">
 
-    <View
-        android:background="@drawable/ic_bg_topheader"
-        android:layout_height="230dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/bg_top_header"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/locationTextView"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/ic_location_textview"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bg_top_header" />
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/roundwire"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:hint="현재위치"
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="42dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="148dp"
-        android:background="#00FF0000"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.634"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/map"
-        tools:ignore="OnClick" />
+            android:padding="5dp"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/positionButton"
-        android:layout_width="42dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="160dp"
-        android:background="#00FF0000"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.303"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/marker"
-        tools:ignore="OnClick" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-    <EditText
-        android:layout_height="wrap_content"
-        android:layout_width="370dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/searchEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="가게이름"
-        android:layout_marginTop="7dp"
-        android:backgroundTint="@color/cardColor"
-        app:layout_constraintTop_toBottomOf="@+id/locationTextView"
-        android:textCursorDrawable="@color/cardColor"
-        android:textColorHint="@color/cardColor"
-        android:textColor="@color/cardColor"
-        android:shadowColor="@color/cardColor"
-        android:inputType="textPersonName"
-        android:ems="10"/>
+        <Button
+            android:id="@+id/imageButton"
+            android:layout_width="190dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundwire"
+            android:text="location"
+            android:textColor="#0F4C81"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            tools:ignore="OnClick" />
 
-    <Button
-        android:id="@+id/storelist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="388dp"
-        android:layout_marginRight="10dp"
-        android:background="#fff"
-        android:text="모든가게보기"
-        android:textColor="#000"
+    </LinearLayout>
 
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/storelist"
+            android:layout_width="190dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/roundcorner"
+            android:text="store"
+
+            android:textColor="#FFFFFF"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/positionButton"
+            android:layout_width="190dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/roundwire"
+            android:text="map"
+            android:textColor="#0F4C81"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            tools:ignore="OnClick" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/reco_btn"
+            android:layout_width="190dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/roundcorner"
+
+            android:text="recommend"
+            android:textColor="#FFFFFF"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
+</LinearLayout>

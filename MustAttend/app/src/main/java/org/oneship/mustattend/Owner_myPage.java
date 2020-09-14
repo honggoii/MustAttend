@@ -45,6 +45,7 @@ public class Owner_myPage extends AppCompatActivity implements View.OnClickListe
     TextView ShopAddress_id;
     String ShopAddress;
     EditText ShopPhone_id;
+    EditText menu1,menu2,menu3,price1,price2,price3; //대표메뉴, 가격들 2020-06-29
     String ShopPhone;
     TextView ShopPrivateNum_id;
     String ShopParking;
@@ -67,6 +68,7 @@ public class Owner_myPage extends AppCompatActivity implements View.OnClickListe
     String store_parking;
     String store_image;
     String store_address;
+    String store_menu1,store_menu2,store_menu3,store_price1,store_price2,store_price3; //이전 activity에서 전달받은 메뉴,가격들 2020-06-29
     int store_maxclientnum;
     Bitmap old_image;   //
 
@@ -82,6 +84,12 @@ public class Owner_myPage extends AppCompatActivity implements View.OnClickListe
         store_parking = getIntent().getStringExtra("store_parking"); //주차 가능?
         store_maxclientnum = getIntent().getIntExtra("store_maxclientnum", 0); //수용인원
         store_image = getIntent().getStringExtra("store_image");//가게 사진 String으로 받기
+        store_menu1 = getIntent().getStringExtra("menu1"); //대표메뉴 값 받기 2020-06-29
+        store_menu2 = getIntent().getStringExtra("menu2");
+        store_menu3 = getIntent().getStringExtra("menu3");
+        store_price1 = getIntent().getStringExtra("price1"); //가격 값 받기 2020-06-29
+        store_price2 = getIntent().getStringExtra("price2");
+        store_price3 = getIntent().getStringExtra("price3");
 
         ShopImage =(ImageView)findViewById(R.id.Shop_imge);
         old_image = StringToBitmap(store_image); //bitmap형태의 사진 데이터 받음
@@ -113,6 +121,13 @@ public class Owner_myPage extends AppCompatActivity implements View.OnClickListe
         impossible_id = (RadioButton)findViewById(R.id.r_btn2); //주차 안돼 버튼
         Capacity_id = (NumberPicker)findViewById(R.id.Capacity); //수용 인원
 
+        menu1 = (EditText)findViewById(R.id.menu1);
+        menu2 = (EditText)findViewById(R.id.menu2);
+        menu3 = (EditText)findViewById(R.id.menu3);
+        price1 = (EditText)findViewById(R.id.price1);
+        price2 = (EditText)findViewById(R.id.price2);
+        price3 = (EditText)findViewById(R.id.price3);
+
         final NumberPicker numberPickerCapacity = (NumberPicker) findViewById(R.id.Capacity);
 
         numberPickerCapacity.setMaxValue(10000);
@@ -133,11 +148,16 @@ public class Owner_myPage extends AppCompatActivity implements View.OnClickListe
 
         Capacity_id.setValue(store_maxclientnum);
         //radiobutton.setChecked(true);
-
+        menu1.setText(store_menu1);
+        menu2.setText(store_menu2);
+        menu3.setText(store_menu3);
+        price1.setText(store_price1);
+        price2.setText(store_price2);
+        price3.setText(store_price3);
 
         /*
-        * 여기까지는 DB의 가게 정보를 출력해준 거
-        * */
+         * 여기까지는 DB의 가게 정보를 출력해준 거
+         * */
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -209,9 +229,16 @@ public class Owner_myPage extends AppCompatActivity implements View.OnClickListe
                 Capacity = Capacity_id.getValue(); //수정한 수용인원
                 System.out.println("============="+ShopName+"  "+ShopPhone+"  "+"  "+Capacity+"=========");
                 /*
-                * 사진은 나중에
-                * */
-                new JSONTask().execute("http://192.168.43.175:3000/modifystore");
+                 * 사진은 나중에
+                 * */
+                //view에서 대표메뉴, 가격 값 받아오기 2020-06-29
+                store_menu1 = menu1.getText().toString();
+                store_menu2 = menu2.getText().toString();
+                store_menu3 = menu3.getText().toString();
+                store_price1 = price1.getText().toString();
+                store_price2 = price2.getText().toString();
+                store_price3 = price3.getText().toString();
+                new JSONTask().execute("http://192.168.0.11:3000/modifystore");
                 //사용자가 입력한 정보 텍스트로 변환
 
                 break;
@@ -234,6 +261,12 @@ public class Owner_myPage extends AppCompatActivity implements View.OnClickListe
                 jsonObject.put("parking",ShopParking);//주차 여부
                 jsonObject.put("Capacity", Capacity);//수용인원
                 jsonObject.put("image", img);//이미지
+                jsonObject.put("menu1",store_menu1); //대표메뉴, 가격 json형태로 2020-06-29
+                jsonObject.put("menu2",store_menu2);
+                jsonObject.put("menu3",store_menu3);
+                jsonObject.put("price1",store_price1);
+                jsonObject.put("price2",store_price2);
+                jsonObject.put("price3",store_price3);
 
 
                 String data = jsonObject.toString();

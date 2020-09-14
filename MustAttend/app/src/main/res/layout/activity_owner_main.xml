@@ -73,7 +73,7 @@
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:background="@color/BASIC"
-            android:text="가게 관리"
+            android:text="가게 정보 수정"
             android:textColor="@color/cardColor"
             android:textSize="20sp" />
     </LinearLayout>

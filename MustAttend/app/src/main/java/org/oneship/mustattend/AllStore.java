@@ -61,7 +61,7 @@ public class AllStore extends AppCompatActivity {
         System.out.println("**********AllStoreActivity : "+user_email+"***********");
 
         //서버랑 연결
-        new JSONTask().execute("http://192.168.43.175:3000/allstore");
+        new JSONTask().execute("http://192.168.0.11:3000/allstore");
 
         // 어댑터 설정
         adapter = new AllStoreAdapter();
@@ -179,7 +179,7 @@ public class AllStore extends AppCompatActivity {
                 adapter.setOnItemClickListener(new OnStoreItemClickListener() {
                     @Override
                     public void onItemClick(AllStoreAdapter.ViewHolder holder, View view, int position) {
-                        sel_store_name = adapter.getNames(position).replace("\"", ""); // 가게이름 문자열로
+                        sel_store_name = adapter.getNames(position); // 가게이름 문자열로
                         sel_store_phonenum = adapter.getPhones(position); // 전화번호 문자열로
                         sel_store_parking = adapter.getParks(position); // 주차여부 문자열로
                         sel_store_maxclientnum = adapter.getNums(position); // 수용인원 문자열로

@@ -17,6 +17,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".MyReservation"></activity>
         <activity android:name=".OwnerMain" />
+        <activity android:name=".OwnerReservation" />
         <activity android:name=".AllStore" />
         <activity android:name=".RealRecommendActivity" />
         <activity android:name=".Position" />

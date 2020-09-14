@@ -1,13 +1,11 @@
 package org.oneship.mustattend;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,17 +28,27 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RealReservation extends AppCompatActivity {
+public class OwnerReservation extends AppCompatActivity {
     String user_email;
     RecyclerView recyclerView;
-    ReservationAdapter adapter; // 어댑터 설정
+    OwnerReservationAdapter adapter; // 어댑터 설정
 
-    String store;
+    String num;
+    String purpose;
     Integer dateMonth;
     Integer dateDay;
     Integer timeHour;
     Integer timeMin;
     Integer numberOfPeople;
+
+    // 가게 선택하면 넘겨줄 아이템 변수들
+    String sel_num;
+    String sel_purpose;
+    String sel_dateMonth;
+    String sel_dateDay;
+    String sel_timeHour;
+    String sel_timeMin;
+    String sel_numberOfPeople;
 
 
     @Override
@@ -55,7 +63,7 @@ public class RealReservation extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ReservationAdapter(); // 어댑터 설정정
+        adapter = new OwnerReservationAdapter(); // 어댑터 설정정
 
         //서버랑 연결
         new JSONTask().execute("http://192.168.0.11:3000/myreserve");
@@ -65,7 +73,7 @@ public class RealReservation extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, mainUI.class);
+        Intent intent = new Intent(this, OwnerMain.class);
         intent.putExtra("user_email",user_email); //intent로 mainUI activity에 전달할 이메일
         startActivity(intent);
     }
@@ -172,17 +180,15 @@ public class RealReservation extends AppCompatActivity {
 
                 //예약내역이 없음을 알려주는 부분
                 if(reservation.size() == 0 ){
-                    //Toast.makeText(getApplicationContext(),"예약내역이 없습니다.", Toast.LENGTH_LONG).show();
-                    showMessage();
-
-
+                    Toast.makeText(getApplicationContext(),"예약내역이 없습니다.", Toast.LENGTH_LONG).show();
                     break;
                 }
 
                 for(int j=0; j < reservation.size(); j++){
                     JsonObject reservationObj = (JsonObject) reservation.get(j);
                     System.out.println("***************reservationObj************"+reservationObj);
-                    store = reservationObj.get("store").getAsString();
+                    num = reservationObj.get("num").getAsString();
+                    purpose = reservationObj.get("purpose").getAsString();
                     dateMonth = reservationObj.get("dateMonth").getAsInt();
                     dateDay = reservationObj.get("dateDay").getAsInt();
                     timeHour = reservationObj.get("timeHour").getAsInt();
@@ -191,14 +197,15 @@ public class RealReservation extends AppCompatActivity {
 
                     // json객체를 json배열로 만들기
                     jsonarr = new JSONArray();
-                    jsonarr.put(store);
+                    jsonarr.put(num);
+                    jsonarr.put(purpose);
                     jsonarr.put(dateMonth);
                     jsonarr.put(dateDay);
                     jsonarr.put(timeHour);
                     jsonarr.put(timeMin);
                     jsonarr.put(numberOfPeople);
 
-                    System.out.println(store); // 가게 속성 출력
+                    System.out.println(purpose); // 가게 속성 출력
                     System.out.println(dateMonth); // 가게 속성 출력
                     System.out.println(dateDay); // 가게 속성 출력
                     System.out.println(timeHour); // 가게 속성 출력
@@ -208,7 +215,8 @@ public class RealReservation extends AppCompatActivity {
 
                     //.replace("\"","")
                     //문자열에서 특정 문자를 바꾸라는 함수
-                    adapter.addItem(store.toString());
+                    adapter.addCheck(num.toString());
+                    adapter.addItem(purpose.toString());
                     adapter.addMonth(dateMonth.toString());
                     adapter.addDay(dateDay.toString());
                     adapter.addHour(timeHour.toString());
@@ -218,33 +226,36 @@ public class RealReservation extends AppCompatActivity {
 
 
                     recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터설정
+
+                    // 아이템 클릭하면
+                    adapter.setOnItemClickListener(new OnStoreItemClickListener3() {
+                        @Override
+                        public void onItemClick(OwnerReservationAdapter.ViewHolder holder, View view, int position) {
+                            sel_num = adapter.getCheck(position); //예약 번호
+                            sel_purpose = adapter.getItem(position); // 목적
+                            sel_dateMonth = adapter.getMonth(position);
+                            sel_dateDay = adapter.getDay(position);
+                            sel_timeHour = adapter.getHour(position);
+                            sel_timeMin = adapter.getMin(position);
+                            sel_numberOfPeople = adapter.getNum(position);
+
+                            // 가게 페이지로
+                            Intent intent = new Intent(OwnerReservation.this, ReserveRequest.class);
+                            intent.putExtra("num",sel_num);//intent로 다음 activity에 전달할 예약 번호
+                            intent.putExtra("user_email",user_email); //intent로 다음 activity에 전달할 이메일
+                            intent.putExtra("purpose",sel_purpose); //intent로 다음 activity에 전달할 목적
+                            intent.putExtra("dateMonth",sel_dateMonth); //intent로 다음 activity에 전달할 달
+                            intent.putExtra("timeHour",sel_timeHour); //intent로 다음 activity에 전달할 시간
+                            intent.putExtra("numberOfPeople",sel_numberOfPeople); //intent로 다음 activity에 전달할 수용인원
+                            //AllStore.this.startActivity(intent);
+                            startActivity(intent);
+                        }
+                    });
                 }
 
 
             }
         }
-
-    }
-
-    public void showMessage(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(" ");
-        builder.setMessage("예약 내역이 없습니다!");
-        builder.setIcon(R.drawable.logo);
-
-        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // 홈화면으로 돌아가기
-                Intent intent = new Intent(getApplicationContext() , mainUI.class);
-                intent.putExtra("user_email",user_email); //intent로 다음 activity에 전달할 이메일
-                //액티비티 시작!
-                startActivity(intent);
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
 }

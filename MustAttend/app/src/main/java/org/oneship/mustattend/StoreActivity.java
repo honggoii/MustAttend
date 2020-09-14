@@ -45,6 +45,10 @@ public class StoreActivity extends AppCompatActivity {
 
         container = findViewById(R.id.container);
 
+        container.removeAllViews();
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.sub_menu, container, true);
+
         Button button1 = findViewById(R.id.register);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override

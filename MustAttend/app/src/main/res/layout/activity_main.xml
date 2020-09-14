@@ -18,11 +18,11 @@
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
-        app:menu="@menu/menu_bottom"/>
+        app:menu="@menu/menu_bottom" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

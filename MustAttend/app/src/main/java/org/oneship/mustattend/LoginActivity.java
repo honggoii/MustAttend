@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         // node.js로부터 올바르게 로그인 성공 여부 값 전달받기
         //성공했으면 mainUI로 intent 시작
         //아니면 팝업
-        new JSONTask().execute("http://192.168.43.175:3000/login");
+        new JSONTask().execute("http://192.168.0.11:3000/login");
         email = username_id.getText().toString();   //email String 문자열로 저장
         //Toast.makeText(getApplicationContext(),email, Toast.LENGTH_LONG).show();
         password = password_id.getText().toString();    //password String 문자열로 저장
@@ -153,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
             System.out.println(result);
             if(result.equals("1")) {//예약자면
                 //System.out.println("***************:"+email);
-                System.out.println("*************여기2********");
+                System.out.println("*************여기2 예약자********");
                 //new AlertDialog.Builder(getApplicationContext())
                 //       .setTitle("가입 완료")
                 //       .setMessage("\n가입이 완료되었습니다.")
@@ -161,14 +161,16 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"로그인 성공", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext() , mainUI.class);
                 intent.putExtra("user_email",email); //intent로 다음 activity에 전달할 이메일
+                intent.putExtra("number",result);//intent로 다음 activity에 상태 전달
                 //액티비티 시작!
                 startActivity(intent);
             }
-            else{//가게등록자면
-                System.out.println("*************여기2 예약자********");
+            else if (result.equals("2")) {//가게등록자면
+                System.out.println("*************여기2 가게 등록자********");
                 Toast.makeText(getApplicationContext(),"로그인 성공", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext() , OwnerMain.class);
                 intent.putExtra("user_email",email); //intent로 다음 activity에 전달할 이메일
+                intent.putExtra("number",result);//intent로 다음 activity에 상태 전달
                 //액티비티 시작!
                 startActivity(intent);
             }

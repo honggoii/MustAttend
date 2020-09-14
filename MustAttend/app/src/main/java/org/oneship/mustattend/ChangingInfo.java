@@ -83,7 +83,7 @@ public class ChangingInfo extends AppCompatActivity implements View.OnClickListe
             case R.id.register:
                 user_password =password_id.getText().toString();    //수정한 비밀번호 값 가져오기
                 user_phone = phone_id.getText().toString(); //수정한 전화번호 값 가져오기
-                new JSONTask().execute("http://192.168.43.175:3000/modifyuser");
+                new JSONTask().execute("http://192.168.0.11:3000/modifyuser");
                 break;
 
 

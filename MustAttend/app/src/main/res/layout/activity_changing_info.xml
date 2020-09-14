@@ -142,6 +142,7 @@
             android:layout_height="123dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
             android:textSize="18sp" />
 
         <TextView
@@ -161,6 +162,7 @@
             android:layout_height="123dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:gravity="center|center_horizontal"
             android:textSize="18sp" />
 
         <TextView
@@ -180,6 +182,7 @@
             android:layout_height="123dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
             android:textSize="18sp" />
 
         <TextView

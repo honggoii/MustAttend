@@ -10,23 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-/* 데이터 관리, 리사이클러 뷰 관리 */
+public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.ViewHolder> {
 
-// 뷰홀더를 담은 어댑터 상속
-public class AllStoreAdapter extends RecyclerView.Adapter<AllStoreAdapter.ViewHolder> {
     ArrayList<String> items = new ArrayList<String>();
-
     ArrayList<String> names = new ArrayList<String>();
     ArrayList<String> phones = new ArrayList<String>();
     ArrayList<String> parks = new ArrayList<String>();
     ArrayList<String> nums = new ArrayList<String>();
 
-    OnStoreItemClickListener listener;
+    OnStoreItemClickListener2 listener;
 
 
     public void addItem(String item) {
-
-        System.out.println("item=============="+item);
         items.add(item); // 아이템 추가
     }
 
@@ -72,7 +67,7 @@ public class AllStoreAdapter extends RecyclerView.Adapter<AllStoreAdapter.ViewHo
         items.set(position, item);
     }
 
-    public void setOnItemClickListener(OnStoreItemClickListener listener) {
+    public void setOnItemClickListener(OnStoreItemClickListener2 listener) {
         this.listener = listener; // 리스너 할당
     }
 
@@ -83,7 +78,7 @@ public class AllStoreAdapter extends RecyclerView.Adapter<AllStoreAdapter.ViewHo
         // 레이아웃 인플레이션해서 뷰홀더에 넣음
         // 하나의 아이템을 위한 뷰홀더를 만드는 과정
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.allstore_item, parent, false);
+        View itemView = inflater.inflate(R.layout.recommed_item, parent, false);
 
         return new ViewHolder(itemView, listener);
     }
@@ -106,7 +101,7 @@ public class AllStoreAdapter extends RecyclerView.Adapter<AllStoreAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
 
-        public ViewHolder (final View itemView, final OnStoreItemClickListener listener) {
+        public ViewHolder (final View itemView, final OnStoreItemClickListener2 listener) {
             super(itemView);
 
             // 하나의 아이템 전달
@@ -133,5 +128,4 @@ public class AllStoreAdapter extends RecyclerView.Adapter<AllStoreAdapter.ViewHo
             textView.setText(item);
         }
     }
-
 }
