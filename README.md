@@ -15,12 +15,12 @@ Development of Android App (place reservation based on location)
 + 가게 정보 수정
 + 가게 삭제(개발중)
 + 예약
-+ 예약 수락/거절(개발중)
++ 예약 수락/거절
 + 예약 내역 확인
 + 리뷰(개발 계획)
 
 # 사용 툴/언어
 + 안드로이드 스튜디오
-+ Java
++ Java 8
 + Node.js
 + MongoDB
