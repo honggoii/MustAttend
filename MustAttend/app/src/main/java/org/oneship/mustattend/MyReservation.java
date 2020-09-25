@@ -34,6 +34,7 @@ public class MyReservation extends AppCompatActivity {
     ReservationAdapter adapter; // 어댑터 설정
 
     String store;
+    Integer state;
     Integer dateMonth;
     Integer dateDay;
     Integer timeHour;
@@ -178,6 +179,7 @@ public class MyReservation extends AppCompatActivity {
                     JsonObject reservationObj = (JsonObject) reservation.get(j);
                     System.out.println("***************reservationObj************"+reservationObj);
                     store = reservationObj.get("store").getAsString();
+                    state = reservationObj.get("state").getAsInt();
                     dateMonth = reservationObj.get("dateMonth").getAsInt();
                     dateDay = reservationObj.get("dateDay").getAsInt();
                     timeHour = reservationObj.get("timeHour").getAsInt();
@@ -201,8 +203,12 @@ public class MyReservation extends AppCompatActivity {
                     System.out.println(numberOfPeople); // 가게 속성 출력
 
 
+                    System.out.println("********상태*********");
+                    System.out.println(state);
+
                     //.replace("\"","")
                     //문자열에서 특정 문자를 바꾸라는 함수
+                    adapter.addState(state);
                     adapter.addItem(store.toString());
                     adapter.addMonth(dateMonth.toString());
                     adapter.addDay(dateDay.toString());

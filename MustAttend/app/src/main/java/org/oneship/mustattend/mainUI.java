@@ -155,7 +155,7 @@ public class mainUI extends AppCompatActivity {
 //        args.putDouble("longitude",longitude);
 //        recommendActivity.setArguments(args);
 
-        new JSONTask().execute("http://192.168.0.11:3000/savelocation");
+        new JSONTask().execute("http://192.168.43.175:3000/savelocation");
         String address = getCurrentAddress(latitude, longitude);
         textView.setText(address);
 

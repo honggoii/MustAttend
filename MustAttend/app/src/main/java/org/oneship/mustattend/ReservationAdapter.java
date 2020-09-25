@@ -4,6 +4,7 @@ package org.oneship.mustattend;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> {
+    ArrayList<Integer> states = new ArrayList<Integer>();
     ArrayList<String> items = new ArrayList<String>();
     ArrayList<String> dateMonths = new ArrayList<String>();
     ArrayList<String> dateDays = new ArrayList<String>();
@@ -19,6 +21,9 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     ArrayList<String> timeMins = new ArrayList<String>();
     ArrayList<String> numberOfPeoples = new ArrayList<String>();
 
+    public void addState(Integer item){
+        states.add(item);
+    }
     public void addItem(String item){
         items.add(item);
     }
@@ -133,6 +138,17 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
         String item6 = numberOfPeoples.get(position);
         holder.setNum(item6);
+
+        int item7 = states.get(position);
+        if (item7 == 1){
+            holder.setImageView1();
+        }
+        else if (item7 == 2) {
+            holder.setImageView2();
+        }
+        else if (item7 == 3) {
+            holder.setImageView3();
+        }
     }
 
     @Override
@@ -148,6 +164,9 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         TextView textView4;
         TextView textView5;
         TextView textView6;
+        ImageView imageView1;
+        ImageView imageView2;
+        ImageView imageView3;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -158,6 +177,9 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             textView4 = itemView.findViewById(R.id.hour);
             textView5 = itemView.findViewById(R.id.min);
             textView6 = itemView.findViewById(R.id.num);
+            imageView1 = itemView.findViewById(R.id.imageView1);
+            imageView2 = itemView.findViewById(R.id.imageView2);
+            imageView3 = itemView.findViewById(R.id.imageView3);
 
         }
 
@@ -178,6 +200,21 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         }
         public void setNum(String item) {
             textView6.setText(item);
+        }
+        public void setImageView1() {
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setVisibility(View.INVISIBLE);
+            imageView3.setVisibility(View.INVISIBLE);
+        }
+        public void setImageView2() {
+            imageView1.setVisibility(View.INVISIBLE);
+            imageView2.setVisibility(View.VISIBLE);
+            imageView3.setVisibility(View.INVISIBLE);
+        }
+        public void setImageView3() {
+            imageView1.setVisibility(View.INVISIBLE);
+            imageView2.setVisibility(View.INVISIBLE);
+            imageView3.setVisibility(View.VISIBLE);
         }
     }
 }

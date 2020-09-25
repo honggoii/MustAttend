@@ -68,7 +68,7 @@ public class RealRecommendActivity extends AppCompatActivity {
         System.out.println("사용자: 위도, 경도"+latitude+longitude);
 
         //서버랑 연결
-        new JSONTask().execute("http://192.168.0.11:3000/allstore");
+        new JSONTask().execute("http://192.168.43.175:3000/allstore");
 
         // 어댑터 설정
         adapter = new RecommendAdapter();

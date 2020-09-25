@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         // node.js로부터 올바르게 로그인 성공 여부 값 전달받기
         //성공했으면 mainUI로 intent 시작
         //아니면 팝업
-        new JSONTask().execute("http://192.168.0.11:3000/login");
+        new JSONTask().execute("http://192.168.43.175:3000/login");
         email = username_id.getText().toString();   //email String 문자열로 저장
         //Toast.makeText(getApplicationContext(),email, Toast.LENGTH_LONG).show();
         password = password_id.getText().toString();    //password String 문자열로 저장

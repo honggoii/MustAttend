@@ -97,7 +97,7 @@ public class BookingActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new JSONTask().execute("http://192.168.0.11:3000/reservereq");
+                new JSONTask().execute("http://192.168.43.175:3000/reservereq");
                 purpose = res_purpose.getText().toString();
                 dateMonth = month_id.getValue();
                 dateDay = day_id.getValue();

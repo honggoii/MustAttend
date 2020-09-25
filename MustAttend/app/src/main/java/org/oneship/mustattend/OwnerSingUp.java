@@ -178,7 +178,7 @@ public class OwnerSingUp extends AppCompatActivity  {
         StorePhone = StorePhone_id.getText().toString();
         StorePrivateNum = StorePrivateNum_id.getText().toString();
         Capacity = Capacity_id.getValue();
-        new JSONTask().execute("http://192.168.0.11:3000/register");
+        new JSONTask().execute("http://192.168.43.175:3000/register");
 
 
     }

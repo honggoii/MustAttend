@@ -238,7 +238,7 @@ public class Owner_myPage extends AppCompatActivity implements View.OnClickListe
                 store_price1 = price1.getText().toString();
                 store_price2 = price2.getText().toString();
                 store_price3 = price3.getText().toString();
-                new JSONTask().execute("http://192.168.0.11:3000/modifystore");
+                new JSONTask().execute("http://192.168.43.175:3000/modifystore");
                 //사용자가 입력한 정보 텍스트로 변환
 
                 break;

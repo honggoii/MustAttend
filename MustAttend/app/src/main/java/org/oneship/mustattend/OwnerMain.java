@@ -63,7 +63,7 @@ public class OwnerMain extends AppCompatActivity {
         storeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new JSONTask().execute("http://192.168.0.11:3000/checkowner");
+                new JSONTask().execute("http://192.168.43.175:3000/checkowner");
             }
         });
 
@@ -72,7 +72,7 @@ public class OwnerMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ChangingInfo.class);
-                new JSONTask_user().execute("http://192.168.0.11:3000/checkuser");
+                new JSONTask_user().execute("http://192.168.43.175:3000/checkuser");
             }
         });
     }

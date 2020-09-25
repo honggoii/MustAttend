@@ -33,7 +33,8 @@ public class OwnerReservation extends AppCompatActivity {
     RecyclerView recyclerView;
     OwnerReservationAdapter adapter; // 어댑터 설정
 
-    String num;
+    Integer num;
+    Integer state;
     String purpose;
     Integer dateMonth;
     Integer dateDay;
@@ -42,7 +43,7 @@ public class OwnerReservation extends AppCompatActivity {
     Integer numberOfPeople;
 
     // 가게 선택하면 넘겨줄 아이템 변수들
-    String sel_num;
+    Integer sel_num;
     String sel_purpose;
     String sel_dateMonth;
     String sel_dateDay;
@@ -66,7 +67,7 @@ public class OwnerReservation extends AppCompatActivity {
         adapter = new OwnerReservationAdapter(); // 어댑터 설정정
 
         //서버랑 연결
-        new JSONTask().execute("http://192.168.0.11:3000/myreserve");
+        new JSONTask().execute("http://192.168.43.175:3000/myreserve");
 
         recyclerView.setAdapter(adapter);
     }
@@ -187,7 +188,8 @@ public class OwnerReservation extends AppCompatActivity {
                 for(int j=0; j < reservation.size(); j++){
                     JsonObject reservationObj = (JsonObject) reservation.get(j);
                     System.out.println("***************reservationObj************"+reservationObj);
-                    num = reservationObj.get("num").getAsString();
+                    num = reservationObj.get("num").getAsInt();
+                    state = reservationObj.get("state").getAsInt();
                     purpose = reservationObj.get("purpose").getAsString();
                     dateMonth = reservationObj.get("dateMonth").getAsInt();
                     dateDay = reservationObj.get("dateDay").getAsInt();
@@ -205,6 +207,7 @@ public class OwnerReservation extends AppCompatActivity {
                     jsonarr.put(timeMin);
                     jsonarr.put(numberOfPeople);
 
+
                     System.out.println(purpose); // 가게 속성 출력
                     System.out.println(dateMonth); // 가게 속성 출력
                     System.out.println(dateDay); // 가게 속성 출력
@@ -212,10 +215,12 @@ public class OwnerReservation extends AppCompatActivity {
                     System.out.println(timeMin); // 가게 속성 출력
                     System.out.println(numberOfPeople); // 가게 속성 출력
 
+                    System.out.println("********상태*********");
+                    System.out.println(state);
 
                     //.replace("\"","")
                     //문자열에서 특정 문자를 바꾸라는 함수
-                    adapter.addCheck(num.toString());
+                    adapter.addState(state);
                     adapter.addItem(purpose.toString());
                     adapter.addMonth(dateMonth.toString());
                     adapter.addDay(dateDay.toString());
@@ -223,7 +228,6 @@ public class OwnerReservation extends AppCompatActivity {
                     adapter.addMin(timeMin.toString());
                     adapter.addNum(numberOfPeople.toString());
                     // 가게 이름이 json객체니까 string으로 바꿔서
-
 
                     recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터설정
 
@@ -241,7 +245,7 @@ public class OwnerReservation extends AppCompatActivity {
 
                             // 가게 페이지로
                             Intent intent = new Intent(OwnerReservation.this, ReserveRequest.class);
-                            intent.putExtra("num",sel_num);//intent로 다음 activity에 전달할 예약 번호
+                            intent.putExtra("num",num);//intent로 다음 activity에 전달할 예약 번호
                             intent.putExtra("user_email",user_email); //intent로 다음 activity에 전달할 이메일
                             intent.putExtra("purpose",sel_purpose); //intent로 다음 activity에 전달할 목적
                             intent.putExtra("dateMonth",sel_dateMonth); //intent로 다음 activity에 전달할 달

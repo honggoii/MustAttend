@@ -61,7 +61,7 @@ public class AllStore extends AppCompatActivity {
         System.out.println("**********AllStoreActivity : "+user_email+"***********");
 
         //서버랑 연결
-        new JSONTask().execute("http://192.168.0.11:3000/allstore");
+        new JSONTask().execute("http://192.168.43.175:3000/allstore");
 
         // 어댑터 설정
         adapter = new AllStoreAdapter();
