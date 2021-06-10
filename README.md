@@ -17,7 +17,7 @@ Development of Android App (place reservation based on location)
 + [예약 내역 조회 기능 - Adapter](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/ReservationAdapter.java)
 + [가게 내역 조회 기능 - Activity](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/AllStore.java)
 + [가게 내역 조회 기능 - Adapter](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/AllStoreAdapter.java)
-+ [nodejs 부분](MustAttend/nodejs/)
++ [nodejs 부분](nodejs/)
 
 # 기능
 + 회원가입 
