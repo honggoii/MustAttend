@@ -11,9 +11,12 @@ Development of Android App (place reservation based on location)
 
 # 기여한 부분
 + UX/UI 기획 및 구현
-+ 예약 수락/거절 기능
-+ [예약 내역, 가게 내역 조회 기능](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/AllStoreAdapter.java)
-
++ [예약 수락/거절 기능 - Activity](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/OwnerReservation.java)
++ [예약 수락/거절 기능 - Adapter](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/OwnerReservationAdapter.java)
++ [예약 내역 조회 기능 - Activity](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/RealReservation.java)
++ [예약 내역 조회 기능 - Adapter](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/ReservationAdapter.java)
++ [가게 내역 조회 기능 - Activity](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/AllStore.java)
++ [가게 내역 조회 기능 - Adapter](MustAttend/MustAttend/app/src/main/java/org/oneship/mustattend/AllStoreAdapter.java)
 
 # 기능
 + 회원가입 
